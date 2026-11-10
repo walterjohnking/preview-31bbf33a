@@ -3,7 +3,7 @@
 All photos and designs are pitch-only placeholders taken from public Instagram posts. They are not official studio assets and would be replaced or approved by the studio.
 
 ## Flash designs (Grant, @gcm_flash)
-Each design is a trace of the ink from a tattoo Grant posted on Instagram (ink separated from skin; drawing unchanged). Captions note "Done @sonderstudios___".
+Each design is a trace of the ink from a tattoo Grant posted on Instagram. The ink is separated from the skin, outlines are smoothed and specks removed, and his shading is kept as fine stipple. Shapes, line weight and placement of shading are unchanged. The try-on draws the same trace onto the stock arm in the browser (multiply blend, skin texture and sheen kept, wrapped to the arm's curve). Captions note "Done @sonderstudios___".
 | Tile | Source post | Grant's caption |
 |---|---|---|
 | Crawling panther | https://www.instagram.com/p/DcPot1qlPOT/ | "Crawling panther done for Peter!" |
@@ -30,5 +30,7 @@ Each design is a trace of the ink from a tattoo Grant posted on Instagram (ink s
 - "Tattoo. Barber. Coffee." and phone: @sonderstudios___ bio and posts
 - Hours: omitted (Square location hours and directory listings do not agree)
 - Email: omitted (not shown on Square or the Instagram bio)
+
+Paper texture on the flash sheet: generated noise, no photo.
 
 Fonts: Archivo via Google Fonts.

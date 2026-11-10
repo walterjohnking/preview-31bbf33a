@@ -112,25 +112,41 @@ main{padding-bottom:calc(76px + var(--safe-b))}
 .step i{font-style:normal;font-stretch:125%;font-weight:900;font-size:12px;border:1.5px solid var(--bone);border-radius:999px;width:26px;height:26px;display:inline-grid;place-items:center;flex:none;transform:translateY(-3px)}
 .step h2{font-size:clamp(28px,7.6vw,46px)}
 .note{font-size:13px;color:var(--mute)}
-.wall{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0 8px}
-@media(min-width:620px){.wall{grid-template-columns:repeat(4,1fr)}}@media(min-width:1000px){.wall{grid-template-columns:repeat(8,1fr)}}
-.tile{appearance:none;border:0;background:var(--paper);color:var(--ink);border-radius:14px;padding:12px 12px 10px;text-align:left;cursor:pointer;position:relative;display:flex;flex-direction:column;font:inherit;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 0 0 0 var(--bone)}
-.tile .art{aspect-ratio:1/.92;display:grid;place-items:center;padding:6px}
-.tile .art{position:relative}.tile .art img{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);object-fit:contain}
-.wall>.tile{min-width:0}.tile .nm{overflow-wrap:anywhere;hyphens:auto;font-stretch:125%;font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.01em;margin-top:6px;line-height:1.1}
-.tile .by{font-size:11.5px;color:#5c5a55;margin-top:2px}
-.tile[aria-pressed=true]{box-shadow:0 0 0 3px var(--night),0 0 0 5px var(--bone);transform:translateY(-2px)}
-.tile[aria-pressed=true]::after{content:"Selected";position:absolute;top:9px;right:9px;font-stretch:125%;font-weight:800;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);border-radius:999px;padding:3px 7px 2px}
-.tile:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
-
+/* the sheet */
+.sheet{position:relative;margin:22px 0 8px;padding:22px 16px 18px;border-radius:3px;color:var(--ink);
+  background:#eee8dc url(img/paper.webp) 0 0/320px;box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 18px 40px -18px rgba(0,0,0,.7),0 2px 6px rgba(0,0,0,.35);transform:rotate(-.4deg)}
+.sheet::before,.sheet::after{content:"";position:absolute;top:-11px;width:86px;height:26px;background:rgba(236,231,220,.55);box-shadow:0 1px 2px rgba(0,0,0,.2);backdrop-filter:blur(1px)}
+.sheet::before{left:18px;transform:rotate(-5deg)}
+.sheet::after{right:18px;transform:rotate(4deg)}
+.sheet-top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:14px;gap:10px}
+.sheet-top b{font-stretch:125%;font-weight:900;font-size:clamp(28px,8.4vw,54px);letter-spacing:-.02em;line-height:.82;text-transform:uppercase}
+.sheet-top span{font-size:12px;text-align:right;line-height:1.3;color:#3a3833}
+.sheet-top a{color:inherit}
+.wall{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 12px}
+@media(min-width:760px){.fl img{height:220px}.wall{grid-template-columns:repeat(4,1fr);gap:10px 26px}.sheet{padding:30px 30px 24px}}
+.fl{display:block;align-self:start;width:100%;appearance:none;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:pointer;padding:10px 6px 12px;margin:0 0 6px;position:relative;border-radius:10px;-webkit-tap-highlight-color:transparent}
+.fl img{width:100%;height:150px;object-fit:contain;mix-blend-mode:multiply;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.fl:active img{transform:scale(.97)}
+.fl .cap{display:flex;gap:7px;align-items:baseline;margin-top:8px}
+.fl .no{font-stretch:125%;font-weight:900;font-size:11px;color:var(--red)}
+.fl .nm{font-stretch:125%;font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;line-height:1.15}
+.fl .art{position:relative;display:block}.fl .ring{position:absolute;inset:-6px -2px;border:2.5px solid var(--red);border-radius:48% 52% 45% 55%/55% 45% 55% 45%;transform:rotate(-2deg) scale(.96);opacity:0;transition:opacity .25s ease,transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.fl[aria-pressed=true] .ring{opacity:.9;transform:rotate(-2deg) scale(1)}
+.fl:focus-visible{outline:2px dashed var(--ink);outline-offset:2px}
+.sheet-foot{margin-top:6px;font-size:11.5px;color:#55524b;border-top:1px solid rgba(23,22,26,.25);padding-top:9px}
+/* try-on */
 .tryon{margin-top:34px;display:grid;gap:22px}
-@media(min-width:860px){.stage{aspect-ratio:1170/1545}.tryon{grid-template-columns:minmax(0,430px) 1fr;align-items:start}}
-.stage{position:relative;width:100%;aspect-ratio:1/1.08;border-radius:20px;overflow:hidden;background:#3a2f28;touch-action:none;user-select:none;-webkit-user-select:none}
-.stage .arm{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.stage .ink{position:absolute;left:0;top:0;mix-blend-mode:multiply;opacity:.9;will-change:transform;transform-origin:center center;pointer-events:none;filter:blur(.25px) contrast(1.05)}
-.stage .grab{position:absolute;inset:0;cursor:grab}
-.stage .lab{position:absolute;left:12px;bottom:12px;right:12px;display:flex;justify-content:space-between;gap:8px;pointer-events:none}
-.stage .lab span{background:rgba(22,33,32,.78);color:var(--bone);border-radius:999px;padding:6px 11px 5px;font-size:11.5px;font-stretch:125%;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+@media(min-width:860px){.tryon{grid-template-columns:minmax(0,470px) 1fr;align-items:start}.stage{aspect-ratio:900/1188!important}}
+.stage{position:relative;width:100%;aspect-ratio:1/1.1;border-radius:20px;overflow:hidden;background:#2a2420;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+.stage.drag{cursor:grabbing}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage .lab{position:absolute;left:12px;top:12px;pointer-events:none;background:rgba(22,33,32,.78);color:var(--bone);border-radius:999px;padding:6px 11px 5px;font-size:11.5px;font-stretch:125%;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.stage .hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);pointer-events:none;background:rgba(22,33,32,.8);color:var(--bone);border-radius:999px;padding:8px 14px 7px;font-size:12.5px;white-space:nowrap;transition:opacity .4s ease}
+.stage.moved .hint{opacity:0}
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.tool{appearance:none;font:inherit;color:var(--bone);background:rgba(44,64,61,.45);border:1px solid var(--line);border-radius:12px;min-height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-stretch:125%;font-weight:700;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.tool svg{width:18px;height:18px}
+.tool:active{background:rgba(236,231,220,.14)}
 .panel{display:flex;flex-direction:column;gap:16px}
 .slider{padding:6px 2px}
 .slider input{width:100%;-webkit-appearance:none;appearance:none;height:44px;background:transparent;margin:0}
@@ -139,7 +155,8 @@ main{padding-bottom:calc(76px + var(--safe-b))}
 .slider input::-moz-range-track{height:4px;border-radius:4px;background:rgba(236,231,220,.22)}
 .slider input::-moz-range-progress{height:4px;background:var(--bone)}
 .slider input::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--bone);border:4px solid var(--night)}
-.ends{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mute);font-stretch:125%;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.ends{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--mute);font-stretch:125%;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.ends i{display:inline-block;background:var(--mute);border-radius:2px}
 .quiet{font-size:13.5px;color:var(--bone2);text-align:center}
 .orig{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px;text-decoration:none}
 .orig img{width:58px;height:58px;object-fit:cover;border-radius:9px;flex:none}
@@ -287,23 +304,31 @@ footer a{text-decoration:none}
       <span class="pill">Flash</span>
     </div>
     <div class="step"><i>1</i><h2 class="wide">Pick a design.</h2></div>
-    <p class="note">Designs by Grant, <a href="https://www.instagram.com/gcm_flash/" target="_blank" rel="noopener">@gcm_flash</a>.</p>
-    <div class="wall" id="wall" role="group" aria-label="Flash designs"></div>
+    <div class="sheet">
+      <div class="sheet-top"><b>GCM<br>Flash</b><span>Grant<br><a href="https://www.instagram.com/gcm_flash/" target="_blank" rel="noopener">@gcm_flash</a></span></div>
+      <div class="wall" id="wall" role="group" aria-label="Flash designs by Grant"></div>
+      <div class="sheet-foot">Each design is from a tattoo Grant has done at Sonder and posted on Instagram.</div>
+    </div>
 
     <div class="tryon" id="tryon">
       <div>
         <div class="step"><i>2</i><h2 class="wide">See it on skin.</h2></div>
         <div class="stage" id="stage">
-          <img class="arm" src="img/arm/arm.webp" alt="Arm preview" width="900" height="1188">
-          <img class="ink" id="ink" alt="" draggable="false">
-          <div class="grab" id="grab" aria-hidden="true"></div>
-          <div class="lab"><span id="lab-name">Crawling panther</span></div>
+          <canvas id="cv" aria-label="Arm preview with the chosen design" role="img"></canvas>
+          <span class="lab" id="lab-name">Crawling panther</span>
+          <span class="hint">Drag the design to move it</span>
+        </div>
+        <div class="tools">
+          <button class="tool" type="button" id="t-left" aria-label="Turn left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4v6h6"/><path d="M5.5 15a7.5 7.5 0 1 0 1.8-8.2L4 10"/></svg>Turn</button>
+          <button class="tool" type="button" id="t-right" aria-label="Turn right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 4v6h-6"/><path d="M18.5 15a7.5 7.5 0 1 1-1.8-8.2L20 10"/></svg>Turn</button>
+          <button class="tool" type="button" id="t-flip" aria-label="Flip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18"/><path d="M8 7 3 12l5 5V7Z"/><path d="m16 7 5 5-5 5V7Z"/></svg>Flip</button>
+          <button class="tool" type="button" id="t-reset" aria-label="Reset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/></svg>Reset</button>
         </div>
       </div>
       <div class="panel">
         <div class="step"><i>3</i><h2 class="wide">Drag to size it.</h2></div>
         <div class="slider">
-          <input type="range" id="size" min="0" max="100" value="50" aria-label="Design size">
+          <input type="range" id="size" min="0" max="1000" value="420" aria-label="Design size">
           <div class="ends"><span>Smaller</span><span>Bigger</span></div>
         </div>
         <div>
@@ -314,11 +339,11 @@ footer a{text-decoration:none}
         <p class="quiet">Free consultation. Your artist will talk through size, placement and price.</p>
         <a class="orig" id="orig" href="#" target="_blank" rel="noopener">
           <img id="orig-img" src="" alt="">
-          <span><small>The original piece</small><b id="orig-t">See it on @gcm_flash</b></span>
+          <span><small>The original piece</small><b>See it on @gcm_flash</b></span>
         </a>
       </div>
     </div>
-    <p class="flash-foot">Each design is taken from a tattoo Grant has posted on Instagram, shown here so you can try it on. Sizing is a visual guide only. The arm photo is a stock image.</p>
+    <p class="flash-foot">Sizing and placement are a visual guide only. The arm photo is a stock image.</p>
   </div>
 </section>
 
@@ -422,7 +447,7 @@ footer a{text-decoration:none}
 </nav>
 
 <script>
-const DESIGNS = [{"id": "panther", "name": "Crawling panther", "post": "https://www.instagram.com/p/DcPot1qlPOT/", "w": 338, "h": 800}, {"id": "web", "name": "Spider web", "post": "https://www.instagram.com/p/Dd5JxdtH8gg/", "w": 511, "h": 800}, {"id": "dragon", "name": "Dragon", "post": "https://www.instagram.com/p/DdXvHuPn8Gq/", "w": 316, "h": 800}, {"id": "lamb", "name": "Lamb and crown of thorns", "post": "https://www.instagram.com/p/DdaUGdPH_-K/", "w": 508, "h": 800}, {"id": "shark", "name": "Hammerhead shark", "post": "https://www.instagram.com/p/DcKfVgyIHXA/", "w": 464, "h": 800}, {"id": "tiger", "name": "Tiger", "post": "https://www.instagram.com/p/Dd7yUHmn0D2/", "w": 377, "h": 659}, {"id": "skull", "name": "Cherub and skull", "post": "https://www.instagram.com/p/Dd7yUHmn0D2/", "w": 359, "h": 450}, {"id": "cherries", "name": "Cherries", "post": "https://www.instagram.com/p/Dd7yUHmn0D2/", "w": 306, "h": 476}];
+const DESIGNS = [{"id": "panther", "name": "Crawling panther", "post": "https://www.instagram.com/p/DcPot1qlPOT/", "w": 419, "h": 1000}, {"id": "web", "name": "Spider web", "post": "https://www.instagram.com/p/Dd5JxdtH8gg/", "w": 632, "h": 1000}, {"id": "dragon", "name": "Dragon", "post": "https://www.instagram.com/p/DdXvHuPn8Gq/", "w": 381, "h": 1000}, {"id": "lamb", "name": "Lamb and crown of thorns", "post": "https://www.instagram.com/p/DdaUGdPH_-K/", "w": 631, "h": 1000}, {"id": "shark", "name": "Hammerhead shark", "post": "https://www.instagram.com/p/DcKfVgyIHXA/", "w": 568, "h": 1000}, {"id": "tiger", "name": "Tiger", "post": "https://www.instagram.com/p/Dd7yUHmn0D2/", "w": 571, "h": 1000}, {"id": "skull", "name": "Cherub and skull", "post": "https://www.instagram.com/p/Dd7yUHmn0D2/", "w": 897, "h": 1000}, {"id": "cherries", "name": "Cherries", "post": "https://www.instagram.com/p/Dd7yUHmn0D2/", "w": 720, "h": 1000}];
 (function(){
   // ---------- routing ----------
   const pages=['home','flash','artists','barber','visit'];
@@ -432,52 +457,132 @@ const DESIGNS = [{"id": "panther", "name": "Crawling panther", "post": "https://
     document.querySelectorAll('.nav a,.tabs a').forEach(a=>{ if(a.dataset.go===id) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
     if(push) history.pushState(null,'','#'+id);
     window.scrollTo({top:0,behavior:'instant'});
-    if(id==='flash') requestAnimationFrame(layout);
+    if(id==='flash') requestAnimationFrame(()=>window.__layoutFlash&&window.__layoutFlash());
   }
   document.addEventListener('click',e=>{const a=e.target.closest('a[data-go]'); if(!a) return; e.preventDefault(); show(a.dataset.go,true);});
   window.addEventListener('popstate',()=>show(location.hash.slice(1),false));
   show(location.hash.slice(1)||'home',false);
 
-  // ---------- flash wall ----------
-  const wall=document.getElementById('wall'), stage=document.getElementById('stage'), ink=document.getElementById('ink');
-  const range=document.getElementById('size'), grab=document.getElementById('grab');
-  let cur=DESIGNS[0], pos={x:.5,y:.45}, sizeT=.5;
+  // ---------- flash sheet + try-on ----------
+  const wall=document.getElementById('wall'), stage=document.getElementById('stage'), cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+  const range=document.getElementById('size');
+  const IMG={}, load=src=>IMG[src]||(IMG[src]=new Promise(r=>{const i=new Image();i.decoding='async';i.onload=()=>r(i);i.src=src;}));
+  // arm geometry (image px of img/arm/arm.webp, 900 x 1188): left edge, right edge, sleeve hem
+  const AW=900, AH=1188;
+  const LEFT=[[300,136],[400,145],[600,170],[800,240],[1000,340],[1188,362]];
+  const RIGHT=[[120,770],[400,756],[700,750],[900,760],[1188,784]];
+  const HEM=[[124,350],[220,322],[300,302],[450,290],[600,282],[770,272],[800,272]];
+  const lerpT=(T,y)=>{ if(y<=T[0][0]) return T[0][1]; for(let i=1;i<T.length;i++){ if(y<=T[i][0]){const [y0,a]=T[i-1],[y1,b]=T[i]; return a+(b-a)*(y-y0)/(y1-y0);} } return T[T.length-1][1]; };
+  const armAt=y=>{ const l=lerpT(LEFT,y), r=lerpT(RIGHT,y); return {c:(l+r)/2, R:(r-l)/2}; };
+  let arm, pores, sheen, cur=DESIGNS[0], skin=null;
+  const S={u:0,y:690,t:.42,rot:0,flip:false};
+  let W=0,H=0,dpr=1,k=1,ox=0,oy=0, inkC=document.createElement('canvas'), warpC=document.createElement('canvas'), shC=document.createElement('canvas');
+  function fit(){
+    const r=stage.getBoundingClientRect(); dpr=Math.min(window.devicePixelRatio||1,2);
+    W=Math.round(r.width*dpr); H=Math.round(r.height*dpr); if(!W) return false;
+    cv.width=warpC.width=shC.width=W; cv.height=warpC.height=shC.height=H;
+    k=Math.max(W/AW,H/AH); ox=(W-AW*k)/2; oy=(H-AH*k)/2; return true;
+  }
+  const sizeRange=()=>{ const {R}=armAt(S.y), ar=cur.w/cur.h; const maxH=Math.min(660,(1.55*R)/ar), minH=Math.max(120,maxH*.28); return [minH,maxH]; };
+  function hemAt(x){ return lerpT(HEM.map(([x,y])=>[x,y]),x); }
+  function armPath(c){ c.beginPath(); c.moveTo(ox+LEFT[0][1]*k,oy+LEFT[0][0]*k);
+    HEM.forEach(([x,y])=>c.lineTo(ox+x*k,oy+y*k)); RIGHT.forEach(([y,x])=>c.lineTo(ox+x*k,oy+y*k));
+    for(let i=LEFT.length-1;i>=0;i--) c.lineTo(ox+LEFT[i][1]*k,oy+LEFT[i][0]*k); c.closePath(); }
+  let raf=0; const req=()=>{ if(!raf) raf=requestAnimationFrame(()=>{raf=0;draw();}); };
+  function draw(){
+    if(!arm||!W) return;
+    ctx.globalCompositeOperation='source-over'; ctx.globalAlpha=1;
+    ctx.drawImage(arm,ox,oy,AW*k,AH*k);
+    if(!skin) return;
+    const [minH,maxH]=sizeRange(); const h=minH+(maxH-minH)*S.t, w=h*cur.w/cur.h;
+    // 1) design, rotated / flipped, flat, at screen resolution
+    const rad=S.rot*Math.PI/180, cs=Math.abs(Math.cos(rad)), sn=Math.abs(Math.sin(rad));
+    const bw=w*cs+h*sn, bh=w*sn+h*cs, res=k*1.0;
+    inkC.width=Math.ceil(bw*res)+4; inkC.height=Math.ceil(bh*res)+4;
+    const ic=inkC.getContext('2d'); ic.clearRect(0,0,inkC.width,inkC.height);
+    ic.save(); ic.translate(inkC.width/2,inkC.height/2); ic.rotate(rad); if(S.flip) ic.scale(-1,1);
+    ic.drawImage(skin,-w*res/2,-h*res/2,w*res,h*res); ic.restore();
+    // 2) wrap around the arm: cylinder mapping in strips
+    const wc=warpC.getContext('2d'); wc.globalCompositeOperation='source-over'; wc.globalAlpha=1; wc.clearRect(0,0,W,H);
+    const bx=-bw/2, by=S.y-bh/2;           // flat coords: x = arc offset from arm centreline
+    const cols=Math.min(80,Math.max(12,Math.ceil(inkC.width/7))), rows=Math.min(60,Math.max(8,Math.ceil(inkC.height/14)));
+    const cw=inkC.width/cols, ch=inkC.height/rows;
+    const M=(fx,fy)=>{ const A=armAt(fy), R=A.R*1.04, t=Math.max(-1.57,Math.min(1.57,fx/R));
+      return [ox+(A.c+R*Math.sin(t))*k, oy+(fy+R*0.07*(1-Math.cos(t)))*k, t]; };
+    for(let j=0;j<rows;j++){
+      const fy0=by+j*ch/res, fy1=by+(j+1)*ch/res;
+      for(let i=0;i<cols;i++){
+        const fx0=S.u+bx+i*cw/res, fx1=fx0+cw/res;
+        const p00=M(fx0,fy0), p10=M(fx1,fy0), p01=M(fx0,fy1);
+        const tm=(p00[2]+p10[2])/2; if(Math.abs(tm)>1.6) continue;
+        const al=Math.max(0,Math.min(1,(1.6-Math.abs(tm))/0.45))*(0.8+0.2*Math.cos(tm));
+        if(al<=0.01||p10[0]-p00[0]<0.05) continue;
+        wc.globalAlpha=al;
+        wc.setTransform((p10[0]-p00[0])/cw,(p10[1]-p00[1])/cw,(p01[0]-p00[0])/ch,(p01[1]-p00[1])/ch,p00[0],p00[1]);
+        wc.drawImage(inkC,i*cw,j*ch,cw+0.6,ch+0.6,0,0,cw+0.6,ch+0.6);
+      }
+    }
+    wc.setTransform(1,0,0,1,0,0);
+    wc.globalAlpha=1;
+    // 3) skin texture shows through: knock pores out of the ink, keep it under the sleeve
+    wc.globalCompositeOperation='destination-out'; wc.globalAlpha=.38; wc.drawImage(pores,ox,oy,AW*k,AH*k);
+    wc.globalAlpha=1; wc.globalCompositeOperation='destination-in'; wc.fillStyle='#000'; armPath(wc); wc.fill();
+    wc.globalCompositeOperation='source-over';
+    // 4) ink into the skin (multiply keeps the arm's light and shadow), then the skin's sheen back on top
+    ctx.globalCompositeOperation='multiply'; ctx.drawImage(warpC,0,0);
+    const sc=shC.getContext('2d'); sc.globalCompositeOperation='source-over'; sc.clearRect(0,0,W,H); sc.drawImage(sheen,ox,oy,AW*k,AH*k);
+    sc.globalCompositeOperation='destination-in'; sc.drawImage(warpC,0,0);
+    ctx.globalCompositeOperation='screen'; ctx.globalAlpha=.32; ctx.drawImage(shC,0,0);
+    ctx.globalCompositeOperation='source-over'; ctx.globalAlpha=1;
+    range.style.setProperty('--p',(S.t*100)+'%');
+  }
+  function clampPos(){
+    S.y=Math.max(380,Math.min(1080,S.y));
+    const R=armAt(S.y).R; S.u=Math.max(-R*0.95,Math.min(R*0.95,S.u));
+    const hem=hemAt(armAt(S.y).c+S.u)+40; if(S.y<hem) S.y=hem;
+  }
   DESIGNS.forEach((d,i)=>{
-    const b=document.createElement('button'); b.className='tile'; b.type='button'; b.setAttribute('aria-pressed',i===0?'true':'false');
-    b.innerHTML='<div class="art"><img src="img/flash/'+d.id+'.webp" alt="'+d.name+' by Grant" loading="'+(i<4?'eager':'lazy')+'"></div><div class="nm">'+d.name+'</div><div class="by">Grant · @gcm_flash</div>';
+    const b=document.createElement('button'); b.className='fl'; b.type='button'; b.setAttribute('aria-pressed',i===0?'true':'false');
+    b.innerHTML='<span class="art"><span class="ring"></span><img src="img/flash/'+d.id+'.webp" width="'+d.w+'" height="'+d.h+'" alt="'+d.name+', by Grant" loading="'+(i<4?'eager':'lazy')+'"></span><span class="cap"><span class="no">'+String(i+1).padStart(2,'0')+'</span><span class="nm">'+d.name+'</span></span>';
     b.addEventListener('click',()=>{ pick(d,b); if(window.innerWidth<860) document.getElementById('tryon').scrollIntoView({behavior:'smooth',block:'start'}); });
     wall.appendChild(b);
   });
-  function pick(d,btn){
-    cur=d; pos={x:.5,y:.45};
-    wall.querySelectorAll('.tile').forEach(t=>t.setAttribute('aria-pressed',t===btn?'true':'false'));
-    ink.style.opacity=0;
-    const im=new Image(); im.onload=()=>{ ink.src=im.src; layout(); ink.style.transition='opacity .35s ease'; ink.style.opacity=.9; }; im.src='img/flash/'+d.id+'.webp';
+  async function pick(d,btn){
+    cur=d; wall.querySelectorAll('.fl').forEach(t=>t.setAttribute('aria-pressed',t===btn?'true':'false'));
     document.getElementById('chosen').textContent=d.name; document.getElementById('lab-name').textContent=d.name;
-    const o=document.getElementById('orig'); o.href=d.post; document.getElementById('orig-img').src='img/flash/src-'+d.id+'.webp';
-    document.getElementById('orig-img').alt=d.name+' tattoo by Grant';
+    document.getElementById('orig').href=d.post; const oi=document.getElementById('orig-img'); oi.src='img/flash/src-'+d.id+'.webp'; oi.alt=d.name+' tattoo by Grant';
+    skin=await load('img/skin/'+d.id+'.webp'); if(cur===d) req();
   }
-  function layout(){
-    const W=stage.clientWidth, H=stage.clientHeight; if(!W) return;
-    // design height range relative to the arm; respect each design's aspect
-    const ar=cur.w/cur.h;
-    const maxH=Math.min(H*.62, (W*.58)/ar), minH=maxH*.38;
-    const h=minH+(maxH-minH)*sizeT, w=h*ar;
-    const cx=pos.x*W, cy=pos.y*H;
-    ink.style.width=w+'px'; ink.style.height=h+'px';
-    ink.style.transform='translate('+(cx-w/2)+'px,'+(cy-h/2)+'px) rotate(-3deg)';
-    range.style.setProperty('--p',(sizeT*100)+'%');
-  }
-  range.addEventListener('input',()=>{ sizeT=range.value/100; layout(); });
-  window.addEventListener('resize',layout);
-  // drag to move on the arm
-  let drag=null;
-  grab.addEventListener('pointerdown',e=>{ drag={x:e.clientX,y:e.clientY,p:{...pos}}; grab.setPointerCapture(e.pointerId); grab.style.cursor='grabbing'; });
-  grab.addEventListener('pointermove',e=>{ if(!drag) return; const W=stage.clientWidth,H=stage.clientHeight;
-    pos.x=Math.min(.78,Math.max(.22,drag.p.x+(e.clientX-drag.x)/W)); pos.y=Math.min(.8,Math.max(.2,drag.p.y+(e.clientY-drag.y)/H)); layout(); });
-  const end=()=>{drag=null; grab.style.cursor='grab';};
-  grab.addEventListener('pointerup',end); grab.addEventListener('pointercancel',end);
-  pick(DESIGNS[0], wall.querySelector('.tile'));
+  function reset(){ S.u=0; S.y=690; S.rot=0; S.flip=false; S.t=.42; range.value=420; clampPos(); req(); }
+  range.addEventListener('input',()=>{ S.t=range.value/1000; req(); });
+  document.getElementById('t-left').onclick=()=>{S.rot-=10;req();};
+  document.getElementById('t-right').onclick=()=>{S.rot+=10;req();};
+  document.getElementById('t-flip').onclick=()=>{S.flip=!S.flip;req();};
+  document.getElementById('t-reset').onclick=reset;
+  // drag to place; two fingers to size and turn
+  const pts=new Map(); let g=null;
+  const toImg=(e)=>{ const r=stage.getBoundingClientRect(); return {x:((e.clientX-r.left)*dpr-ox)/k, y:((e.clientY-r.top)*dpr-oy)/k}; };
+  stage.addEventListener('pointerdown',e=>{ try{stage.setPointerCapture(e.pointerId);}catch(_){} pts.set(e.pointerId,toImg(e)); stage.classList.add('drag','moved'); start(); });
+  stage.addEventListener('pointermove',e=>{ if(!pts.has(e.pointerId)) return; pts.set(e.pointerId,toImg(e)); move(); });
+  const up=e=>{ pts.delete(e.pointerId); if(!pts.size) stage.classList.remove('drag'); start(); };
+  stage.addEventListener('pointerup',up); stage.addEventListener('pointercancel',up);
+  function start(){ const p=[...pts.values()]; if(!p.length){g=null;return;}
+    g={p0:p.map(q=>({...q})),u:S.u,y:S.y,t:S.t,rot:S.rot};
+    if(p.length>1){ g.d=Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y); g.a=Math.atan2(p[1].y-p[0].y,p[1].x-p[0].x); } }
+  function move(){ if(!g) return; const p=[...pts.values()];
+    const cx=p.reduce((s,q)=>s+q.x,0)/p.length, cy=p.reduce((s,q)=>s+q.y,0)/p.length;
+    const cx0=g.p0.reduce((s,q)=>s+q.x,0)/g.p0.length, cy0=g.p0.reduce((s,q)=>s+q.y,0)/g.p0.length;
+    const A=armAt(g.y), th=Math.max(-1.3,Math.min(1.3,g.u/(A.R*1.04)));
+    S.u=g.u+(cx-cx0)/Math.max(.35,Math.cos(th)); S.y=g.y+(cy-cy0);
+    if(p.length>1&&g.p0.length>1){ const d=Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y), a=Math.atan2(p[1].y-p[0].y,p[1].x-p[0].x);
+      const [mn,mx]=sizeRange(), h0=mn+(mx-mn)*g.t, h1=h0*d/g.d; S.t=Math.max(0,Math.min(1,(h1-mn)/(mx-mn))); range.value=Math.round(S.t*1000);
+      S.rot=g.rot+(a-g.a)*180/Math.PI; }
+    clampPos(); req(); }
+  async function boot(){ [arm,pores,sheen]=await Promise.all([load('img/arm/arm.webp'),load('img/arm/arm-pores.webp'),load('img/arm/arm-sheen.webp')]); fit(); req(); }
+  window.addEventListener('resize',()=>{ if(fit()) req(); });
+  window.__layoutFlash=()=>{ if(fit()) req(); };
+  pick(DESIGNS[0], wall.querySelector('.fl')); boot();
+
 })();
 </script>
 </body>
