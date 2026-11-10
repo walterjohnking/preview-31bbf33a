@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="googlebot" content="noindex,nofollow">
+<title>Sonder Studios · Footscray</title>
+<meta name="description" content="Tattoo, barber and coffee. Unit 2, 38 Leeds Street, Footscray.">
+<meta property="og:title" content="Sonder Studios · Footscray">
+<meta property="og:description" content="Tattoo, barber and coffee. Unit 2, 38 Leeds Street, Footscray.">
+<meta property="og:image" content="img/og.jpg">
+<meta name="theme-color" content="#1d2b2a">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,400;100,500;100,600;125,800;125,900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/street-strip.webp">
+<style>
+:root{
+  --night:#162120; --teal:#22312f; --teal2:#2c403d; --bone:#ECE7DC; --bone2:#d9d2c3; --mute:#a3aca6;
+  --paper:#EFE9DD; --ink:#17161a; --red:#c2412e; --line:rgba(236,231,220,.16);
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--night);color:var(--bone);font-family:"Archivo",system-ui,sans-serif;font-stretch:100%;line-height:1.45;min-height:100svh;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.09;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wide{font-stretch:125%;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;line-height:.86}
+.caps{font-stretch:125%;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+.pill{display:inline-block;background:var(--bone);color:var(--night);border-radius:999px;padding:5px 12px 4px;font-stretch:125%;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:40;background:rgba(22,33,32,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.mark{font-stretch:125%;font-weight:900;font-size:17px;letter-spacing:-.01em;text-decoration:none;line-height:.9}
+.mark sup{font-size:8px;font-weight:600;vertical-align:top;margin-left:1px}
+.nav{display:none;gap:22px}
+.nav a{text-decoration:none;font-stretch:125%;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;padding:6px 0;border-bottom:2px solid transparent}
+.nav a[aria-current=page]{opacity:1;border-color:var(--bone)}
+.top .quick{font-size:12px;text-decoration:none;font-stretch:125%;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:7px 12px}
+
+/* bottom tabs (mobile) */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:45;background:rgba(22,33,32,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:var(--safe-b)}
+.tabs a{text-decoration:none;text-align:center;padding:12px 2px 13px;font-stretch:125%;font-weight:800;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.6;position:relative}
+.tabs a[aria-current=page]{opacity:1}
+.tabs a[aria-current=page]::before{content:"";position:absolute;top:0;left:28%;right:28%;height:2px;background:var(--bone)}
+.tabs a.hot{color:var(--night);opacity:1}
+.tabs a.hot span{background:var(--bone);border-radius:999px;padding:4px 9px 3px}
+main{padding-bottom:calc(76px + var(--safe-b))}
+@media(min-width:860px){.nav{display:flex}.tabs{display:none}main{padding-bottom:40px}}
+
+/* pages */
+.page{display:none;animation:fade .35s ease}
+.page.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* buttons */
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border-radius:999px;text-decoration:none;font-stretch:125%;font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;border:1.5px solid var(--bone);transition:transform .15s ease,background .2s ease}
+.btn:active{transform:scale(.98)}
+.btn.solid{background:var(--bone);color:var(--night)}
+.btn.ghost{color:var(--bone);background:transparent}
+.btn .arr{font-family:system-ui;font-weight:400;font-size:18px;line-height:1}
+.btns{display:grid;gap:10px}
+@media(min-width:620px){.btns.row{grid-template-columns:repeat(3,auto);justify-content:start}}
+
+/* HOME */
+.hero{position:relative;min-height:calc(100svh - 56px - 64px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;
+  background:linear-gradient(180deg,#2e4744 0%,#22312f 46%,#162120 100%)}
+.hero .street{position:absolute;left:0;right:0;bottom:0;height:46%;background:url(img/street-strip.webp) center bottom/cover no-repeat;opacity:.55;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 55%);mask-image:linear-gradient(180deg,transparent 0,#000 55%)}
+.hero .wrap{position:relative;width:100%;padding-top:48px;padding-bottom:28px}
+.hero h1{font-size:clamp(52px,15.6vw,176px);margin:18px 0 18px}
+.hero h1 sup{font-size:.13em;font-weight:600;vertical-align:top;position:relative;top:.25em;margin-left:.08em}
+.hero .one{font-stretch:125%;font-weight:800;font-size:clamp(17px,4.6vw,26px);text-transform:uppercase;letter-spacing:.02em}
+.hero .loc{margin:10px 0 26px;font-size:15px;color:var(--bone2);display:flex;gap:8px;align-items:center}
+.hero .loc svg{flex:none}
+.rule{height:1px;background:var(--bone);opacity:.5;margin:0 0 22px}
+
+.room{padding:56px 0 18px}
+.room h2,.sec-h{font-size:clamp(34px,9vw,64px);margin-bottom:22px}
+.three{display:grid;gap:12px}
+@media(min-width:760px){.three{grid-template-columns:repeat(3,1fr)}}
+.part{border:1px solid var(--line);border-radius:18px;padding:20px 20px 22px;background:rgba(44,64,61,.35);display:flex;flex-direction:column;gap:10px;min-height:170px;text-decoration:none}
+.part .n{font-stretch:125%;font-weight:900;font-size:28px;text-transform:uppercase;letter-spacing:-.01em}
+.part p{color:var(--bone2);font-size:15px}
+.part .go{margin-top:auto;font-size:12px;font-stretch:125%;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.part.coffee{background:var(--bone);color:var(--night)}
+.part.coffee p{color:#3b4644}
+
+.row4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mini{text-decoration:none;display:block}
+.mini .ph{aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:var(--teal2)}
+.mini img{width:100%;height:100%;object-fit:cover}
+.mini b{display:block;margin-top:8px;font-stretch:125%;font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.02em}
+.home-art{padding:40px 0 10px}
+.home-art .hd{display:flex;justify-content:space-between;align-items:end;margin-bottom:14px}
+.home-art .hd a{font-size:12px}
+.poster{margin:44px 0 10px;display:grid;gap:16px;align-items:center}
+.poster img{border-radius:16px;width:100%;max-width:440px}
+@media(min-width:760px){.poster{grid-template-columns:440px 1fr;gap:40px}}
+.poster figcaption{font-size:12px;color:var(--mute);margin-top:8px}
+.endcta{padding:30px 0 20px}
+
+/* FLASH */
+.flash-head{padding:34px 0 18px}
+.step{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+.step i{font-style:normal;font-stretch:125%;font-weight:900;font-size:12px;border:1.5px solid var(--bone);border-radius:999px;width:26px;height:26px;display:inline-grid;place-items:center;flex:none;transform:translateY(-3px)}
+.step h2{font-size:clamp(28px,7.6vw,46px)}
+.note{font-size:13px;color:var(--mute)}
+.wall{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0 8px}
+@media(min-width:620px){.wall{grid-template-columns:repeat(4,1fr)}}@media(min-width:1000px){.wall{grid-template-columns:repeat(8,1fr)}}
+.tile{appearance:none;border:0;background:var(--paper);color:var(--ink);border-radius:14px;padding:12px 12px 10px;text-align:left;cursor:pointer;position:relative;display:flex;flex-direction:column;font:inherit;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 0 0 0 var(--bone)}
+.tile .art{aspect-ratio:1/.92;display:grid;place-items:center;padding:6px}
+.tile .art{position:relative}.tile .art img{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);object-fit:contain}
+.wall>.tile{min-width:0}.tile .nm{overflow-wrap:anywhere;hyphens:auto;font-stretch:125%;font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.01em;margin-top:6px;line-height:1.1}
+.tile .by{font-size:11.5px;color:#5c5a55;margin-top:2px}
+.tile[aria-pressed=true]{box-shadow:0 0 0 3px var(--night),0 0 0 5px var(--bone);transform:translateY(-2px)}
+.tile[aria-pressed=true]::after{content:"Selected";position:absolute;top:9px;right:9px;font-stretch:125%;font-weight:800;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);border-radius:999px;padding:3px 7px 2px}
+.tile:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
+
+.tryon{margin-top:34px;display:grid;gap:22px}
+@media(min-width:860px){.stage{aspect-ratio:1170/1545}.tryon{grid-template-columns:minmax(0,430px) 1fr;align-items:start}}
+.stage{position:relative;width:100%;aspect-ratio:1/1.08;border-radius:20px;overflow:hidden;background:#3a2f28;touch-action:none;user-select:none;-webkit-user-select:none}
+.stage .arm{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stage .ink{position:absolute;left:0;top:0;mix-blend-mode:multiply;opacity:.9;will-change:transform;transform-origin:center center;pointer-events:none;filter:blur(.25px) contrast(1.05)}
+.stage .grab{position:absolute;inset:0;cursor:grab}
+.stage .lab{position:absolute;left:12px;bottom:12px;right:12px;display:flex;justify-content:space-between;gap:8px;pointer-events:none}
+.stage .lab span{background:rgba(22,33,32,.78);color:var(--bone);border-radius:999px;padding:6px 11px 5px;font-size:11.5px;font-stretch:125%;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.panel{display:flex;flex-direction:column;gap:16px}
+.slider{padding:6px 2px}
+.slider input{width:100%;-webkit-appearance:none;appearance:none;height:44px;background:transparent;margin:0}
+.slider input::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--bone) var(--p,50%),rgba(236,231,220,.22) var(--p,50%))}
+.slider input::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:var(--bone);border:5px solid var(--night);box-shadow:0 0 0 1.5px var(--bone);margin-top:-13px}
+.slider input::-moz-range-track{height:4px;border-radius:4px;background:rgba(236,231,220,.22)}
+.slider input::-moz-range-progress{height:4px;background:var(--bone)}
+.slider input::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--bone);border:4px solid var(--night)}
+.ends{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mute);font-stretch:125%;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.quiet{font-size:13.5px;color:var(--bone2);text-align:center}
+.orig{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px;text-decoration:none}
+.orig img{width:58px;height:58px;object-fit:cover;border-radius:9px;flex:none}
+.orig small{display:block;color:var(--mute);font-size:12px}
+.orig b{font-weight:600;font-size:14px}
+.chosen{font-stretch:125%;font-weight:900;font-size:22px;text-transform:uppercase;letter-spacing:-.005em;line-height:1}
+.chosen-by{font-size:13px;color:var(--mute);margin-top:4px}
+.flash-foot{margin-top:30px;font-size:12px;color:var(--mute);border-top:1px solid var(--line);padding-top:14px}
+
+/* ARTISTS */
+.artists{display:grid;gap:14px;margin:6px 0 20px}
+@media(min-width:760px){.artists{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.artists{grid-template-columns:repeat(4,1fr)}}
+.artist{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:rgba(44,64,61,.3);display:flex;flex-direction:column}
+.artist .ph{aspect-ratio:4/5;overflow:hidden;background:var(--teal2);position:relative}
+.artist .ph img{width:100%;height:100%;object-fit:cover}
+.artist .ph small{position:absolute;right:8px;bottom:8px;background:rgba(22,33,32,.75);border-radius:999px;padding:3px 8px;font-size:10.5px;color:var(--bone2)}
+.artist .bd{padding:16px;display:flex;flex-direction:column;gap:12px;flex:1}
+.artist h3{font-stretch:125%;font-weight:900;font-size:30px;text-transform:uppercase;letter-spacing:-.01em;line-height:.9}
+.artist .ig{display:inline-flex;gap:8px;align-items:center;font-size:14px;text-decoration:none;color:var(--bone2)}
+.artist .ig u{text-decoration:none;border-bottom:1px solid currentColor}
+.artist .btn{margin-top:auto;min-height:48px;font-size:12.5px}
+.hint{font-size:13px;color:var(--mute);margin:0 0 6px}
+
+/* BARBER */
+.barber{display:grid;gap:22px;margin-bottom:10px}
+@media(min-width:860px){.barber{grid-template-columns:400px 1fr;align-items:start}}
+.barber .ph{border-radius:18px;overflow:hidden;aspect-ratio:4/5;position:relative}
+.barber .ph img{width:100%;height:100%;object-fit:cover}
+.barber .ph small{position:absolute;right:8px;bottom:8px;background:rgba(22,33,32,.75);border-radius:999px;padding:3px 8px;font-size:10.5px;color:var(--bone2)}
+.svc{list-style:none;border-top:1px solid var(--line)}
+.svc li{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.svc li span:last-child{color:var(--bone2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.src{font-size:12px;color:var(--mute);margin:10px 0 18px}
+
+/* VISIT */
+.visit{display:grid;gap:18px}
+@media(min-width:860px){.visit{grid-template-columns:1fr 1fr}}
+.card{border:1px solid var(--line);border-radius:18px;padding:18px;background:rgba(44,64,61,.3)}
+.card dl{display:grid;gap:14px}
+.card dt{font-stretch:125%;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:3px}
+.card dd{font-size:17px}
+.card dd a{text-decoration:none;border-bottom:1px solid rgba(236,231,220,.4)}
+.map{border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--teal2);border:1px solid var(--line)}
+.map iframe{width:100%;height:100%;border:0;filter:grayscale(.6) contrast(.95)}
+.winph{border-radius:18px;overflow:hidden;position:relative}
+.winph img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:18% 30%}
+.winph small{position:absolute;right:8px;bottom:8px;background:rgba(22,33,32,.75);border-radius:999px;padding:3px 8px;font-size:10.5px;color:var(--bone2)}
+.pagepad{padding-top:34px;padding-bottom:10px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 26px;font-size:12px;color:var(--mute)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
+footer a{text-decoration:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#home" data-go="home">SONDER<br>STUDIOS<sup>&copy;</sup></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#home" data-go="home">Home</a>
+      <a href="#flash" data-go="flash">Flash</a>
+      <a href="#artists" data-go="artists">Artists</a>
+      <a href="#barber" data-go="barber">Barber</a>
+      <a href="#visit" data-go="visit">Visit</a>
+    </nav>
+    <a class="quick" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services" target="_blank" rel="noopener">Book</a>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="page" id="p-home" data-page="home">
+  <div class="hero">
+    <div class="street" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="pill">Footscray</span>
+      <h1 class="wide">Sonder<br>Studios<sup>&copy;</sup></h1>
+      <div class="rule"></div>
+      <p class="one">Tattoo, barber and coffee.</p>
+      <p class="loc"><svg width="14" height="18" viewBox="0 0 14 18" aria-hidden="true"><path d="M7 0a7 7 0 0 0-7 7c0 5 7 11 7 11s7-6 7-11a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 7 4.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/></svg>Unit 2, 38 Leeds Street, Footscray</p>
+      <div class="btns row">
+        <a class="btn solid" href="#flash" data-go="flash">See the flash <span class="arr">&rarr;</span></a>
+        <a class="btn ghost" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services/XXDHLXNZ4TQ7CCKCPPVR3C6E" target="_blank" rel="noopener">Book a free consultation</a>
+        <a class="btn ghost" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services" target="_blank" rel="noopener">Book a cut</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="room">
+      <h2 class="wide">One room</h2>
+      <div class="three">
+        <a class="part" href="#artists" data-go="artists">
+          <span class="caps">01</span>
+          <span class="n">Tattoo</span>
+          <p>Lenon, Grant, Melly and Carlo. Start with a free consultation.</p>
+          <span class="go">The artists &rarr;</span>
+        </a>
+        <a class="part" href="#barber" data-go="barber">
+          <span class="caps">02</span>
+          <span class="n">Barber</span>
+          <p>Cuts, fades and beard work, booked the same way you already do.</p>
+          <span class="go">Barber &rarr;</span>
+        </a>
+        <div class="part coffee">
+          <span class="caps">03</span>
+          <span class="n">Coffee</span>
+          <p>In the same room. Come in for a cut or a consult and stay a while.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-art">
+      <div class="hd"><h2 class="wide sec-h" style="margin:0">The artists</h2><a class="caps" href="#artists" data-go="artists">All &rarr;</a></div>
+      <div class="row4">
+        <a class="mini" href="#artists" data-go="artists"><div class="ph"><img src="img/artist-lenon.webp" alt="Snake and rose tattoo by Lenon" loading="lazy"></div><b>Lenon</b></a>
+        <a class="mini" href="#artists" data-go="artists"><div class="ph"><img src="img/artist-grant.webp" alt="Crawling panther tattoo by Grant" loading="lazy"></div><b>Grant</b></a>
+        <a class="mini" href="#artists" data-go="artists"><div class="ph"><img src="img/artist-melly.webp" alt="Hummingbird tattoo by Melly" loading="lazy"></div><b>Melly</b></a>
+        <a class="mini" href="#artists" data-go="artists"><div class="ph"><img src="img/artist-carlo.webp" alt="Tattoo by Carlo" loading="lazy"></div><b>Carlo</b></a>
+      </div>
+    </div>
+
+    <figure class="poster">
+      <div>
+        <img src="img/studio-poster.webp" alt="Sonder Studios poster: Tattoo, Barber, Coffee. Leeds Street, Footscray." loading="lazy" width="900" height="1200">
+        <figcaption>From @sonderstudios___</figcaption>
+      </div>
+      <div class="endcta">
+        <p class="caps" style="margin-bottom:12px;color:var(--mute)">Leeds Street</p>
+        <div class="btns">
+          <a class="btn solid" href="#flash" data-go="flash">See the flash <span class="arr">&rarr;</span></a>
+          <a class="btn ghost" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services/XXDHLXNZ4TQ7CCKCPPVR3C6E" target="_blank" rel="noopener">Book a free consultation</a>
+          <a class="btn ghost" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services" target="_blank" rel="noopener">Book a cut</a>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- FLASH -->
+<section class="page" id="p-flash" data-page="flash">
+  <div class="wrap">
+    <div class="flash-head">
+      <span class="pill">Flash</span>
+    </div>
+    <div class="step"><i>1</i><h2 class="wide">Pick a design.</h2></div>
+    <p class="note">Designs by Grant, <a href="https://www.instagram.com/gcm_flash/" target="_blank" rel="noopener">@gcm_flash</a>.</p>
+    <div class="wall" id="wall" role="group" aria-label="Flash designs"></div>
+
+    <div class="tryon" id="tryon">
+      <div>
+        <div class="step"><i>2</i><h2 class="wide">See it on skin.</h2></div>
+        <div class="stage" id="stage">
+          <img class="arm" src="img/arm/arm.webp" alt="Arm preview" width="900" height="1188">
+          <img class="ink" id="ink" alt="" draggable="false">
+          <div class="grab" id="grab" aria-hidden="true"></div>
+          <div class="lab"><span id="lab-name">Crawling panther</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="step"><i>3</i><h2 class="wide">Drag to size it.</h2></div>
+        <div class="slider">
+          <input type="range" id="size" min="0" max="100" value="50" aria-label="Design size">
+          <div class="ends"><span>Smaller</span><span>Bigger</span></div>
+        </div>
+        <div>
+          <div class="chosen" id="chosen">Crawling panther</div>
+          <div class="chosen-by">By Grant, @gcm_flash</div>
+        </div>
+        <a class="btn solid" id="consult" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services/XXDHLXNZ4TQ7CCKCPPVR3C6E" target="_blank" rel="noopener">Book a free consultation</a>
+        <p class="quiet">Free consultation. Your artist will talk through size, placement and price.</p>
+        <a class="orig" id="orig" href="#" target="_blank" rel="noopener">
+          <img id="orig-img" src="" alt="">
+          <span><small>The original piece</small><b id="orig-t">See it on @gcm_flash</b></span>
+        </a>
+      </div>
+    </div>
+    <p class="flash-foot">Each design is taken from a tattoo Grant has posted on Instagram, shown here so you can try it on. Sizing is a visual guide only. The arm photo is a stock image.</p>
+  </div>
+</section>
+
+<!-- ARTISTS -->
+<section class="page" id="p-artists" data-page="artists">
+  <div class="wrap pagepad">
+    <h2 class="wide sec-h">The artists</h2>
+    <p class="hint">Got an artist in mind? Add their name in your booking notes.</p>
+    <div class="artists">
+      <article class="artist">
+        <div class="ph"><img src="img/artist-lenon.webp" alt="Snake and rose tattoo by Lenon" loading="lazy"><small>@lenoncardosotattoo</small></div>
+        <div class="bd"><h3>Lenon</h3>
+          <a class="ig" href="https://www.instagram.com/lenoncardosotattoo" target="_blank" rel="noopener"><u>Instagram</u> &nearr;</a>
+          <a class="btn solid" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services/XXDHLXNZ4TQ7CCKCPPVR3C6E" target="_blank" rel="noopener">Book a free consultation</a></div>
+      </article>
+      <article class="artist">
+        <div class="ph"><img src="img/artist-grant.webp" alt="Crawling panther tattoo by Grant" loading="lazy"><small>@gcm_flash</small></div>
+        <div class="bd"><h3>Grant</h3>
+          <a class="ig" href="https://www.instagram.com/gcm_flash/" target="_blank" rel="noopener"><u>Instagram</u> &nearr;</a>
+          <a class="btn solid" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services/XXDHLXNZ4TQ7CCKCPPVR3C6E" target="_blank" rel="noopener">Book a free consultation</a></div>
+      </article>
+      <article class="artist">
+        <div class="ph"><img src="img/artist-melly.webp" alt="Hummingbird tattoo by Melly" loading="lazy"><small>@mellybulltat2</small></div>
+        <div class="bd"><h3>Melly</h3>
+          <a class="ig" href="https://www.instagram.com/mellybulltat2" target="_blank" rel="noopener"><u>Instagram</u> &nearr;</a>
+          <a class="btn solid" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services/XXDHLXNZ4TQ7CCKCPPVR3C6E" target="_blank" rel="noopener">Book a free consultation</a></div>
+      </article>
+      <article class="artist">
+        <div class="ph"><img src="img/artist-carlo.webp" alt="Tattoo by Carlo" loading="lazy"><small>@cv_tattoos</small></div>
+        <div class="bd"><h3>Carlo</h3>
+          <a class="ig" href="https://www.instagram.com/cv_tattoos" target="_blank" rel="noopener"><u>Instagram</u> &nearr;</a>
+          <a class="btn solid" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services/XXDHLXNZ4TQ7CCKCPPVR3C6E" target="_blank" rel="noopener">Book a free consultation</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- BARBER -->
+<section class="page" id="p-barber" data-page="barber">
+  <div class="wrap pagepad">
+    <h2 class="wide sec-h">Barber</h2>
+    <div class="barber">
+      <div class="ph"><img src="img/barber.webp" alt="A cut in progress at Sonder Studios" loading="lazy"><small>@sonderstudios___</small></div>
+      <div>
+        <ul class="svc">
+          <li><span>Cut + Beard</span><span>A$85 · 50 min</span></li>
+          <li><span>Skin Fade</span><span>A$55 · 40 min</span></li>
+          <li><span>Zero Fade</span><span>A$45 · 30 min</span></li>
+          <li><span>Scissor Cut</span><span>A$55 · 50 min</span></li>
+          <li><span>Classic Haircut</span><span>A$35 · 15 min</span></li>
+          <li><span>Buzz Cut</span><span>A$25 · 15 min</span></li>
+          <li><span>Student Cut/Fade</span><span>A$40 · 30 min</span></li>
+          <li><span>Kids Cut (2–12)</span><span>A$40 · 30 min</span></li>
+          <li><span>Beard Trim &amp; Line Up</span><span>A$30 · 15 min</span></li>
+          <li><span>Hot Towel</span><span>A$15 · 15 min</span></li>
+          <li><span>Eyebrow shape/Line up</span><span>A$15 · 10 min</span></li>
+        </ul>
+        <p class="src">As listed in Square.</p>
+        <a class="btn solid" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services" target="_blank" rel="noopener">Book a cut</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="page" id="p-visit" data-page="visit">
+  <div class="wrap pagepad">
+    <h2 class="wide sec-h">Visit</h2>
+    <div class="visit">
+      <div style="display:grid;gap:18px">
+        <div class="card">
+          <dl>
+            <div><dt>Address</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Sonder%20Studios%2C%2038%20Leeds%20St%2C%20Footscray%20VIC%203011" target="_blank" rel="noopener">Unit 2, 38 Leeds Street, Footscray</a><br><span style="color:var(--mute);font-size:14px">Maddern Square, VIC 3011</span></dd></div>
+            <div><dt>Phone</dt><dd><a href="tel:+61493601479">0493 601 479</a></dd></div>
+            <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/sonderstudios___" target="_blank" rel="noopener">@sonderstudios___</a></dd></div>
+            <div><dt>Times</dt><dd style="font-size:15px;color:var(--bone2)">Open times are in Square when you book.</dd></div>
+          </dl>
+        </div>
+        <div class="btns">
+          <a class="btn solid" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services/XXDHLXNZ4TQ7CCKCPPVR3C6E" target="_blank" rel="noopener">Book a free consultation</a>
+          <a class="btn ghost" href="https://book.squareup.com/appointments/lrnzmgfnkgfwfz/location/L4522E7Q0Y84H/services" target="_blank" rel="noopener">Book a cut</a>
+        </div>
+      </div>
+      <div style="display:grid;gap:18px">
+        <div class="map"><iframe title="Map: 38 Leeds Street, Footscray" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Sonder%20Studios%2C%2038%20Leeds%20St%2C%20Footscray%20VIC%203011&amp;z=17&amp;output=embed"></iframe></div>
+        <div class="winph"><img src="img/window-carlo.webp" alt="The Sonder Studios window on Leeds Street" loading="lazy"><small>@cv_tattoos</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>Sonder Studios · Unit 2, 38 Leeds Street, Footscray</span><span>Photos from the studio and artists' Instagram, credited on each image.</span></div></footer>
+</main>
+
+<nav class="tabs" aria-label="Pages">
+  <a href="#home" data-go="home">Home</a>
+  <a href="#flash" data-go="flash" class="hot"><span>Flash</span></a>
+  <a href="#artists" data-go="artists">Artists</a>
+  <a href="#barber" data-go="barber">Barber</a>
+  <a href="#visit" data-go="visit">Visit</a>
+</nav>
+
+<script>
+const DESIGNS = [{"id": "panther", "name": "Crawling panther", "post": "https://www.instagram.com/p/DcPot1qlPOT/", "w": 338, "h": 800}, {"id": "web", "name": "Spider web", "post": "https://www.instagram.com/p/Dd5JxdtH8gg/", "w": 511, "h": 800}, {"id": "dragon", "name": "Dragon", "post": "https://www.instagram.com/p/DdXvHuPn8Gq/", "w": 316, "h": 800}, {"id": "lamb", "name": "Lamb and crown of thorns", "post": "https://www.instagram.com/p/DdaUGdPH_-K/", "w": 508, "h": 800}, {"id": "shark", "name": "Hammerhead shark", "post": "https://www.instagram.com/p/DcKfVgyIHXA/", "w": 464, "h": 800}, {"id": "tiger", "name": "Tiger", "post": "https://www.instagram.com/p/Dd7yUHmn0D2/", "w": 377, "h": 659}, {"id": "skull", "name": "Cherub and skull", "post": "https://www.instagram.com/p/Dd7yUHmn0D2/", "w": 359, "h": 450}, {"id": "cherries", "name": "Cherries", "post": "https://www.instagram.com/p/Dd7yUHmn0D2/", "w": 306, "h": 476}];
+(function(){
+  // ---------- routing ----------
+  const pages=['home','flash','artists','barber','visit'];
+  function show(id,push){
+    if(!pages.includes(id)) id='home';
+    document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on',p.dataset.page===id));
+    document.querySelectorAll('.nav a,.tabs a').forEach(a=>{ if(a.dataset.go===id) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+    if(push) history.pushState(null,'','#'+id);
+    window.scrollTo({top:0,behavior:'instant'});
+    if(id==='flash') requestAnimationFrame(layout);
+  }
+  document.addEventListener('click',e=>{const a=e.target.closest('a[data-go]'); if(!a) return; e.preventDefault(); show(a.dataset.go,true);});
+  window.addEventListener('popstate',()=>show(location.hash.slice(1),false));
+  show(location.hash.slice(1)||'home',false);
+
+  // ---------- flash wall ----------
+  const wall=document.getElementById('wall'), stage=document.getElementById('stage'), ink=document.getElementById('ink');
+  const range=document.getElementById('size'), grab=document.getElementById('grab');
+  let cur=DESIGNS[0], pos={x:.5,y:.45}, sizeT=.5;
+  DESIGNS.forEach((d,i)=>{
+    const b=document.createElement('button'); b.className='tile'; b.type='button'; b.setAttribute('aria-pressed',i===0?'true':'false');
+    b.innerHTML='<div class="art"><img src="img/flash/'+d.id+'.webp" alt="'+d.name+' by Grant" loading="'+(i<4?'eager':'lazy')+'"></div><div class="nm">'+d.name+'</div><div class="by">Grant · @gcm_flash</div>';
+    b.addEventListener('click',()=>{ pick(d,b); if(window.innerWidth<860) document.getElementById('tryon').scrollIntoView({behavior:'smooth',block:'start'}); });
+    wall.appendChild(b);
+  });
+  function pick(d,btn){
+    cur=d; pos={x:.5,y:.45};
+    wall.querySelectorAll('.tile').forEach(t=>t.setAttribute('aria-pressed',t===btn?'true':'false'));
+    ink.style.opacity=0;
+    const im=new Image(); im.onload=()=>{ ink.src=im.src; layout(); ink.style.transition='opacity .35s ease'; ink.style.opacity=.9; }; im.src='img/flash/'+d.id+'.webp';
+    document.getElementById('chosen').textContent=d.name; document.getElementById('lab-name').textContent=d.name;
+    const o=document.getElementById('orig'); o.href=d.post; document.getElementById('orig-img').src='img/flash/src-'+d.id+'.webp';
+    document.getElementById('orig-img').alt=d.name+' tattoo by Grant';
+  }
+  function layout(){
+    const W=stage.clientWidth, H=stage.clientHeight; if(!W) return;
+    // design height range relative to the arm; respect each design's aspect
+    const ar=cur.w/cur.h;
+    const maxH=Math.min(H*.62, (W*.58)/ar), minH=maxH*.38;
+    const h=minH+(maxH-minH)*sizeT, w=h*ar;
+    const cx=pos.x*W, cy=pos.y*H;
+    ink.style.width=w+'px'; ink.style.height=h+'px';
+    ink.style.transform='translate('+(cx-w/2)+'px,'+(cy-h/2)+'px) rotate(-3deg)';
+    range.style.setProperty('--p',(sizeT*100)+'%');
+  }
+  range.addEventListener('input',()=>{ sizeT=range.value/100; layout(); });
+  window.addEventListener('resize',layout);
+  // drag to move on the arm
+  let drag=null;
+  grab.addEventListener('pointerdown',e=>{ drag={x:e.clientX,y:e.clientY,p:{...pos}}; grab.setPointerCapture(e.pointerId); grab.style.cursor='grabbing'; });
+  grab.addEventListener('pointermove',e=>{ if(!drag) return; const W=stage.clientWidth,H=stage.clientHeight;
+    pos.x=Math.min(.78,Math.max(.22,drag.p.x+(e.clientX-drag.x)/W)); pos.y=Math.min(.8,Math.max(.2,drag.p.y+(e.clientY-drag.y)/H)); layout(); });
+  const end=()=>{drag=null; grab.style.cursor='grab';};
+  grab.addEventListener('pointerup',end); grab.addEventListener('pointercancel',end);
+  pick(DESIGNS[0], wall.querySelector('.tile'));
+})();
+</script>
+</body>
+</html>
